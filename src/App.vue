@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <router-view/>
   </div>
 </template>
@@ -12,12 +11,14 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+body {
+  margin: 0;
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+body, div, span, h1, h2, h3, h4, h5, h6, button {
+  box-sizing: border-box;
 }
 </style>

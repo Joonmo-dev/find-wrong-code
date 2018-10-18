@@ -12,7 +12,7 @@ export default {
   name: 'UnitBtn',
   methods: {
     onClick(event) {
-      this.$emit('onClik', event);
+      this.$emit('on-click', event);
     },
   },
 };

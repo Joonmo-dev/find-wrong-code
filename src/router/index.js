@@ -1,15 +1,27 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import HelloWorld from '@/components/HelloWorld';
+import PageMain from '@/components/PageMain';
+import PageProblem from '@/components/PageProblem';
+import PageResult from '@/components/PageResult';
 
 Vue.use(Router);
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld,
-    },
-  ],
+  routes: [{
+    path: '/',
+    name: 'PageMain',
+    component: PageMain,
+  }, {
+    path: '/problem/:type/:id',
+    name: 'PageProblem',
+    component: PageProblem,
+    props: true,
+  }, {
+    path: '/',
+    name: 'PageResult',
+    component: PageResult,
+  }],
+  scrollBehavior(to, from, savedPosition) {
+    return savedPosition || { x: 0, y: 0 };
+  },
 });

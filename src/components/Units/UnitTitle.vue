@@ -41,5 +41,7 @@ export default {
 .title {
   font-weight: bolder;
   color: #fff;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 </style>
