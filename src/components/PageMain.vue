@@ -83,7 +83,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .main-logo {
   width: 200px;
   margin: 0 auto;

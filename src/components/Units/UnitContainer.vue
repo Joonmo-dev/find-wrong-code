@@ -10,7 +10,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .container {
   width: 100vw;
   height: 100vh;
