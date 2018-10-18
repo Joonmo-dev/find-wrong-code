@@ -17,7 +17,7 @@ export default new Router({
     component: PageProblem,
     props: true,
   }, {
-    path: '/',
+    path: '/result',
     name: 'PageResult',
     component: PageResult,
   }],
