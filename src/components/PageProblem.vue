@@ -8,7 +8,7 @@
       >
         {{ CapitalizedType }} {{ id }}
       </unit-title>
-      <problem-area/>
+      <problem-area :problem-data="problemData"/>
       <unit-flex-box
         v-animate-css="{
           classes: 'fadeIn',
@@ -31,6 +31,7 @@
 <script>
 import Units from './Units/Units';
 import ProblemArea from './Problem/ProblemArea';
+import problem from '../problems/problems';
 
 export default {
   name: 'PageProblem',
@@ -47,6 +48,12 @@ export default {
       type: String,
       required: true,
     },
+  },
+  data() {
+    return {
+      problemData: problem.c[0].data,
+      problemAnswer: problem.c[0].answer,
+    };
   },
   computed: {
     CapitalizedType() {

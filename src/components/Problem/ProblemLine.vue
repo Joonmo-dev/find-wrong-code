@@ -35,6 +35,9 @@ export default {
   display: flex;
   font-size: 18px;
 }
+.line-number {
+  width: 60px;
+}
 .problem-checkbox {
   color: #fff;
 }
@@ -43,5 +46,6 @@ export default {
   color: #000;
   background-color: #fff;
   font-family: Consolas, monaco, monospace;
+  padding-left: 10px;
 }
 </style>
