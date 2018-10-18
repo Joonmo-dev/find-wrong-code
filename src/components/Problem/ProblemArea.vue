@@ -1,6 +1,6 @@
 <template>
   <div class="problem-area">
-    <problem-line>
+    <problem-line :line-number="1">
       content
     </problem-line>
   </div>
