@@ -14,7 +14,7 @@ export default {
 .container {
   width: 100vw;
   height: 100vh;
-  padding: 100px;
+  padding: 100px 400px;
   background-color: #333;
 }
 </style>
