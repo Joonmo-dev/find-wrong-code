@@ -6,7 +6,7 @@
           classes: 'fadeInUp',
         }"
       >
-        {{ CapitalizedType }} {{ id }}
+        {{ capitalizedType }} {{ id }}
       </unit-title>
       <problem-area :problem-data="problemData"/>
       <unit-flex-box
@@ -49,25 +49,42 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      problemData: problem.c[0].data,
-      problemAnswer: problem.c[0].answer,
-    };
-  },
   computed: {
-    CapitalizedType() {
+    capitalizedType() {
       return this.type[0].toUpperCase() + this.type.slice(1);
+    },
+    numericId() {
+      return Number(this.id);
+    },
+    problemData() {
+      return problem[this.type][this.numericId - 1].data;
+    },
+    problemAnswer() {
+      return problem[this.type][this.numericId - 1].answer;
     },
   },
   methods: {
     gotoNextProblem() {
-
+      if (this.numericId < 5) {
+        this.$router.push({
+          name: 'PageProblem',
+          params: {
+            type: this.type,
+            id: this.numericId + 1,
+          },
+        });
+      } else {
+        this.$router.push({
+          name: 'PageResult',
+        });
+      }
     },
   },
 };
 </script>
 
 <style scoped lang="scss">
-
+.link-btn-container {
+  margin-top: 100px;
+}
 </style>
