@@ -2,10 +2,11 @@
   <div class="problem-area">
     <problem-line
       v-for="(line, index) in lines"
-      :key="index"
+      :key="`${individualKey}${index}`"
       :line-number="index + 1"
       v-model="userAnswer[index]"
       :value="index + 1"
+      :read-only="readOnly"
     >
       {{ line }}
     </problem-line>
@@ -28,6 +29,14 @@ export default {
     problemAnswer: {
       type: Number,
       required: true,
+    },
+    individualKey: {
+      type: String,
+      default: '',
+    },
+    readOnly: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -56,10 +65,19 @@ export default {
     isAnswer(result) {
       this.$emit('change-answer', result);
     },
+    lines() {
+      this.userAnswer = [];
+      for (let i = 0; i < this.lines.length; i += 1) {
+        this.userAnswer.push(false);
+      }
+    },
   },
   created() {
     for (let i = 0; i < this.lines.length; i += 1) {
       this.userAnswer.push(false);
+    }
+    if (this.readOnly) {
+      this.userAnswer[this.problemAnswer - 1] = true;
     }
   },
 };

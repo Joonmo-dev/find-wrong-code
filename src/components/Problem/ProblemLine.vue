@@ -3,8 +3,8 @@
     <div class="line-number">
       <p-check
         v-model="model"
+        :color="readOnly ? 'danger' : 'warning'"
         class="p-icon p-pulse problem-checkbox"
-        color="warning"
         @change="$emit('change', model)"
       >
         <i
@@ -39,6 +39,10 @@ export default {
     lineNumber: {
       type: Number,
       required: true,
+    },
+    readOnly: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view :user-answer-array="userAnswerArray"/>
   </div>
 </template>
 
@@ -9,15 +9,15 @@ export default {
   name: 'App',
   data() {
     return {
-      userAnswer: [],
+      userAnswerArray: [],
     };
   },
   created() {
     this.$bus.$on('add-score', (score) => {
-      this.userAnswer.push(score);
+      this.userAnswerArray.push(score);
     });
     this.$bus.$on('clear-answer', () => {
-      this.userAnswer = [];
+      this.userAnswerArray = [];
     });
   },
 };

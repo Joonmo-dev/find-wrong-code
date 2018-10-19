@@ -12,8 +12,8 @@ export default {
 
 <style scoped lang="scss">
 .container {
-  width: 100vw;
-  height: 100vh;
+  max-width: 100vw;
+  min-height: 100vh;
   padding: 100px 400px;
   background-color: #333;
 }

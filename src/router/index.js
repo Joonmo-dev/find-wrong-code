@@ -17,9 +17,10 @@ export default new Router({
     component: PageProblem,
     props: true,
   }, {
-    path: '/result',
+    path: '/result/:type',
     name: 'PageResult',
     component: PageResult,
+    props: true,
   }],
   scrollBehavior(to, from, savedPosition) {
     return savedPosition || { x: 0, y: 0 };

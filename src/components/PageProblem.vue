@@ -15,6 +15,7 @@
         }"
         :problem-data="problemData"
         :problem-answer="problemAnswer"
+        :individual-key="individualKey"
         @change-answer="onChangeAnswer"
       />
       <unit-flex-box
@@ -59,7 +60,7 @@ export default {
   },
   data() {
     return {
-      userAnswer: false,
+      isCorrect: false,
     };
   },
   computed: {
@@ -81,10 +82,13 @@ export default {
     btnText() {
       return this.numericId < 5 ? 'Next' : 'Finish';
     },
+    individualKey() {
+      return `${this.type}${this.id}`;
+    },
   },
   methods: {
     gotoNextProblem() {
-      this.$bus.$emit('add-score', this.userAnswer ? this.problemScore : 0);
+      this.$bus.$emit('add-score', this.isCorrect ? this.problemScore : 0);
       if (this.numericId < 5) {
         this.$router.push({
           name: 'PageProblem',
@@ -96,11 +100,14 @@ export default {
       } else {
         this.$router.push({
           name: 'PageResult',
+          params: {
+            type: this.type,
+          },
         });
       }
     },
     onChangeAnswer(result) {
-      this.userAnswer = result;
+      this.isCorrect = result;
     },
   },
 };
