@@ -7,6 +7,19 @@
 <script>
 export default {
   name: 'App',
+  data() {
+    return {
+      userAnswer: [],
+    };
+  },
+  created() {
+    this.$bus.$on('add-score', (score) => {
+      this.userAnswer.push(score);
+    });
+    this.$bus.$on('clear-answer', () => {
+      this.userAnswer = [];
+    });
+  },
 };
 </script>
 

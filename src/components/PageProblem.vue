@@ -8,11 +8,19 @@
       >
         {{ capitalizedType }} {{ id }}
       </unit-title>
-      <problem-area :problem-data="problemData"/>
-      <unit-flex-box
+      <problem-area
         v-animate-css="{
           classes: 'fadeIn',
           delay: 500,
+        }"
+        :problem-data="problemData"
+        :problem-answer="problemAnswer"
+        @change-answer="onChangeAnswer"
+      />
+      <unit-flex-box
+        v-animate-css="{
+          classes: 'fadeIn',
+          delay: 1000,
         }"
         justify-end
         class="link-btn-container"
@@ -21,7 +29,7 @@
           class="link-btn"
           @on-click="gotoNextProblem"
         >
-          Next
+          {{ btnText }}
         </unit-btn>
       </unit-flex-box>
     </unit-container>
@@ -45,9 +53,14 @@ export default {
       required: true,
     },
     id: {
-      type: String,
+      type: [String, Number],
       required: true,
     },
+  },
+  data() {
+    return {
+      userAnswer: false,
+    };
   },
   computed: {
     capitalizedType() {
@@ -62,9 +75,16 @@ export default {
     problemAnswer() {
       return problem[this.type][this.numericId - 1].answer;
     },
+    problemScore() {
+      return problem[this.type][this.numericId - 1].score;
+    },
+    btnText() {
+      return this.numericId < 5 ? 'Next' : 'Finish';
+    },
   },
   methods: {
     gotoNextProblem() {
+      this.$bus.$emit('add-score', this.userAnswer ? this.problemScore : 0);
       if (this.numericId < 5) {
         this.$router.push({
           name: 'PageProblem',
@@ -78,6 +98,9 @@ export default {
           name: 'PageResult',
         });
       }
+    },
+    onChangeAnswer(result) {
+      this.userAnswer = result;
     },
   },
 };

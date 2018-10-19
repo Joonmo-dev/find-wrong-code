@@ -2,8 +2,10 @@
   <div class="problem-line">
     <div class="line-number">
       <p-check
+        v-model="model"
         class="p-icon p-pulse problem-checkbox"
         color="warning"
+        @change="$emit('change', model)"
       >
         <i
           slot="extra"
@@ -21,11 +23,28 @@
 <script>
 export default {
   name: 'ProblemLine',
+  model: {
+    prop: 'checked',
+    event: 'change',
+  },
   props: {
+    value: {
+      type: [String, Number, Boolean],
+      required: true,
+    },
+    checked: {
+      type: Boolean,
+      required: true,
+    },
     lineNumber: {
       type: Number,
       required: true,
     },
+  },
+  data() {
+    return {
+      model: this.checked,
+    };
   },
 };
 </script>

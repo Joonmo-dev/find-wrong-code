@@ -10,6 +10,7 @@ import router from './router';
 Vue.config.productionTip = false;
 Vue.use(VAnimateCss);
 Vue.component('p-check', PrettyCheck);
+Vue.prototype.$bus = new Vue();
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
