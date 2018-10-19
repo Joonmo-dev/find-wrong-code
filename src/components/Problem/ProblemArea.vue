@@ -8,7 +8,7 @@
       :value="index + 1"
       :read-only="readOnly"
     >
-      {{ line }}
+      {{ line.replace(/\s/g, '&nbsp;') }}
     </problem-line>
   </div>
 </template>
