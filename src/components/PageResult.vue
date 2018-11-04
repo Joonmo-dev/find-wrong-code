@@ -43,7 +43,8 @@
       />
       <unit-flex-box
         justify-center
-        class="goto-main-btn">
+        class="goto-main-btn"
+      >
         <unit-btn @on-click="gotoMain">
           메인으로 돌아가기
         </unit-btn>
@@ -75,9 +76,7 @@ export default {
   },
   computed: {
     finalScore() {
-      return this.userAnswerArray ?
-        this.userAnswerArray.reduce((result, value) => result + value) :
-        0;
+      return this.userAnswerArray.reduce((result, value) => result + value);
     },
     typedProblems() {
       return problem[this.type];

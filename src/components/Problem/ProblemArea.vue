@@ -1,26 +1,31 @@
 <template>
   <div class="problem-area">
-    <problem-line
+    <div
       v-for="(line, index) in lines"
       :key="`${individualKey}${index}`"
-      :line-number="index + 1"
-      v-model="userAnswer[index]"
-      :value="index + 1"
-      :read-only="readOnly"
+      class="problem-line"
     >
-      {{ line.replace(/\s/g, '&nbsp;') }}
-    </problem-line>
+      <div class="line-number">
+        <p-radio
+          v-model="userAnswer"
+          :color="readOnly ? 'danger' : 'warning'"
+          :disabled="readOnly"
+          :value="index + 1"
+          class="p-curve p-pulse"
+        >
+          {{ index + 1 }}
+        </p-radio>
+      </div>
+      <div class="code">
+        {{ line.replace(/\s/g, '&nbsp;') }}
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import ProblemLine from './ProblemLine';
-
 export default {
   name: 'ProblemArea',
-  components: {
-    ProblemLine,
-  },
   props: {
     problemData: {
       type: String,
@@ -41,48 +46,42 @@ export default {
   },
   data() {
     return {
-      userAnswer: [],
+      userAnswer: this.readOnly ? this.problemAnswer : 0,
     };
   },
   computed: {
     lines() {
       return this.problemData.split('\n');
     },
-    // Need Refactoring
     isAnswer() {
-      let result = this.userAnswer.some(answer => answer);
-      this.userAnswer.forEach((answer, index) => {
-        if (answer) {
-          if (this.problemAnswer !== index + 1) {
-            result = false;
-          }
-        }
-      });
-      return result;
+      return this.userAnswer === this.problemAnswer;
     },
   },
   watch: {
     isAnswer(result) {
       this.$emit('change-answer', result);
     },
-    lines() {
-      this.userAnswer = [];
-      for (let i = 0; i < this.lines.length; i += 1) {
-        this.userAnswer.push(false);
-      }
-    },
   },
   created() {
-    for (let i = 0; i < this.lines.length; i += 1) {
-      this.userAnswer.push(false);
-    }
-    if (this.readOnly) {
-      this.userAnswer[this.problemAnswer - 1] = true;
-    }
+    this.$emit('change-answer', this.isAnswer);
   },
 };
 </script>
 
 <style scoped lang="scss">
-
+.problem-line {
+  display: flex;
+  font-size: 18px;
+}
+.line-number {
+  width: 60px;
+  color: #fff;
+}
+.code {
+  flex: 1;
+  color: #000;
+  background-color: #fff;
+  font-family: Consolas, monaco, monospace;
+  padding-left: 10px;
+}
 </style>

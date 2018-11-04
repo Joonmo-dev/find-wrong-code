@@ -1,5 +1,8 @@
 <template>
-  <div class="page-problem">
+  <div
+    :key="individualKey"
+    class="page-problem"
+  >
     <unit-container>
       <unit-title
         v-animate-css="{
@@ -79,8 +82,11 @@ export default {
     problemScore() {
       return problem[this.type][this.numericId - 1].score;
     },
+    numOfProblem() {
+      return problem[this.type].length;
+    },
     btnText() {
-      return this.numericId < 5 ? 'Next' : 'Finish';
+      return this.numericId < this.numOfProblem ? 'Next' : 'Finish';
     },
     individualKey() {
       return `${this.type}${this.id}`;
@@ -88,8 +94,8 @@ export default {
   },
   methods: {
     gotoNextProblem() {
-      this.$bus.$emit('add-score', this.isCorrect ? this.problemScore : 0);
-      if (this.numericId < 5) {
+      this.$bus.$emit('add-score', this.numericId - 1, this.isCorrect ? this.problemScore : 0);
+      if (this.numericId < this.numOfProblem) {
         this.$router.push({
           name: 'PageProblem',
           params: {

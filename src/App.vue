@@ -9,15 +9,15 @@ export default {
   name: 'App',
   data() {
     return {
-      userAnswerArray: [],
+      userAnswerArray: Array(100).fill(0),
     };
   },
   created() {
-    this.$bus.$on('add-score', (score) => {
-      this.userAnswerArray.push(score);
+    this.$bus.$on('add-score', (index, score) => {
+      this.userAnswerArray[index] = score;
     });
     this.$bus.$on('clear-answer', () => {
-      this.userAnswerArray = [];
+      this.userAnswerArray = Array(100).fill(0);
     });
   },
 };

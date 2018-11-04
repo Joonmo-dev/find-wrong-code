@@ -2,14 +2,14 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import VAnimateCss from 'v-animate-css';
-import PrettyCheck from 'pretty-checkbox-vue/check';
+import PrettyRadio from 'pretty-checkbox-vue/radio';
 import App from './App';
 import router from './router';
 
 
 Vue.config.productionTip = false;
 Vue.use(VAnimateCss);
-Vue.component('p-check', PrettyCheck);
+Vue.component('p-radio', PrettyRadio);
 Vue.prototype.$bus = new Vue();
 /* eslint-disable no-new */
 new Vue({
