@@ -11,6 +11,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@xkeshi/vue-countdown": "^1.0.1",
     "pretty-checkbox-vue": "^1.1.9",
     "v-animate-css": "0.0.2",
     "vue": "^2.5.2",
