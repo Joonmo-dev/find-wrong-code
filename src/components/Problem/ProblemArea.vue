@@ -83,5 +83,6 @@ export default {
   background-color: #fff;
   font-family: Consolas, monaco, monospace;
   padding-left: 10px;
+  border-bottom: 1px solid #e4e4e4;
 }
 </style>
