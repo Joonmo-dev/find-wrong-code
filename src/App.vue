@@ -1,22 +1,32 @@
 <template>
   <div id="app">
     <unit-container>
-      <router-view :user-answer-array="userAnswerArray"/>
+      <problem-countdown-timer
+        :set-minute="5"
+        @countdown="countdown"
+      />
+      <router-view
+        :user-answer-array="userAnswerArray"
+        :last-time="lastTime"
+      />
     </unit-container>
   </div>
 </template>
 
 <script>
 import Units from './components/Units/Units';
+import ProblemCountdownTimer from './components/Problem/ProblemCountdownTimer';
 
 export default {
   name: 'App',
   components: {
     ...Units,
+    ProblemCountdownTimer,
   },
   data() {
     return {
       userAnswerArray: Array(100).fill(0),
+      lastTime: 0,
     };
   },
   created() {
@@ -26,6 +36,11 @@ export default {
     this.$bus.$on('clear-answer', () => {
       this.userAnswerArray = Array(100).fill(0);
     });
+  },
+  methods: {
+    countdown(millisecond) {
+      this.lastTime = millisecond;
+    },
   },
 };
 </script>
