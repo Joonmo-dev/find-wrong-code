@@ -12,6 +12,7 @@ export default {
 
 <style scoped lang="scss">
 .container {
+  position: relative;
   max-width: 100vw;
   min-height: 100vh;
   padding: 100px 400px;
