@@ -3,40 +3,38 @@
     :key="individualKey"
     class="page-problem"
   >
-    <unit-container>
-      <unit-title
-        v-animate-css="{
-          classes: 'fadeInUp',
-        }"
+    <unit-title
+      v-animate-css="{
+        classes: 'fadeInUp',
+      }"
+    >
+      {{ capitalizedType }} {{ id }}
+    </unit-title>
+    <problem-area
+      v-animate-css="{
+        classes: 'fadeIn',
+        delay: 500,
+      }"
+      :problem-data="problemData"
+      :problem-answer="problemAnswer"
+      :individual-key="individualKey"
+      @change-answer="onChangeAnswer"
+    />
+    <unit-flex-box
+      v-animate-css="{
+        classes: 'fadeIn',
+        delay: 1000,
+      }"
+      justify-end
+      class="link-btn-container"
+    >
+      <unit-btn
+        class="link-btn"
+        @on-click="gotoNextProblem"
       >
-        {{ capitalizedType }} {{ id }}
-      </unit-title>
-      <problem-area
-        v-animate-css="{
-          classes: 'fadeIn',
-          delay: 500,
-        }"
-        :problem-data="problemData"
-        :problem-answer="problemAnswer"
-        :individual-key="individualKey"
-        @change-answer="onChangeAnswer"
-      />
-      <unit-flex-box
-        v-animate-css="{
-          classes: 'fadeIn',
-          delay: 1000,
-        }"
-        justify-end
-        class="link-btn-container"
-      >
-        <unit-btn
-          class="link-btn"
-          @on-click="gotoNextProblem"
-        >
-          {{ btnText }}
-        </unit-btn>
-      </unit-flex-box>
-    </unit-container>
+        {{ btnText }}
+      </unit-btn>
+    </unit-flex-box>
   </div>
 </template>
 

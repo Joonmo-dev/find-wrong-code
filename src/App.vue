@@ -1,12 +1,19 @@
 <template>
   <div id="app">
-    <router-view :user-answer-array="userAnswerArray"/>
+    <unit-container>
+      <router-view :user-answer-array="userAnswerArray"/>
+    </unit-container>
   </div>
 </template>
 
 <script>
+import Units from './components/Units/Units';
+
 export default {
   name: 'App',
+  components: {
+    ...Units,
+  },
   data() {
     return {
       userAnswerArray: Array(100).fill(0),

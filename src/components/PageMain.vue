@@ -1,54 +1,52 @@
 <template>
   <div class="page-main">
-    <unit-container>
-      <img
-        v-animate-css="{
-          classes: 'fadeIn',
-        }"
-        src="../assets/logo_page-main.png"
-        alt="re logo"
-        class="main-logo"
+    <img
+      v-animate-css="{
+        classes: 'fadeIn',
+      }"
+      src="../assets/logo_page-main.png"
+      alt="re logo"
+      class="main-logo"
+    >
+    <unit-title
+      v-animate-css="{
+        classes: 'fadeInUp',
+      }"
+      align-center
+    >
+      Finding Wrong Code
+    </unit-title>
+    <unit-title
+      v-animate-css="{
+        classes: 'fadeInUp',
+        delay: 1500,
+      }"
+      :level="3"
+      align-center
+    >
+      언어 선택
+    </unit-title>
+    <unit-flex-box
+      v-animate-css="{
+        classes: 'fadeInUp',
+        delay: 2000,
+      }"
+      justify-center
+      class="link-btn-container"
+    >
+      <unit-btn
+        class="link-btn"
+        @on-click="gotoC"
       >
-      <unit-title
-        v-animate-css="{
-          classes: 'fadeInUp',
-        }"
-        align-center
+        C
+      </unit-btn>
+      <unit-btn
+        class="link-btn"
+        @on-click="gotoJavascript"
       >
-        Finding Wrong Code
-      </unit-title>
-      <unit-title
-        v-animate-css="{
-          classes: 'fadeInUp',
-          delay: 1500,
-        }"
-        :level="3"
-        align-center
-      >
-        언어 선택
-      </unit-title>
-      <unit-flex-box
-        v-animate-css="{
-          classes: 'fadeInUp',
-          delay: 2000,
-        }"
-        justify-center
-        class="link-btn-container"
-      >
-        <unit-btn
-          class="link-btn"
-          @on-click="gotoC"
-        >
-          C
-        </unit-btn>
-        <unit-btn
-          class="link-btn"
-          @on-click="gotoJavascript"
-        >
-          Javascript
-        </unit-btn>
-      </unit-flex-box>
-    </unit-container>
+        Javascript
+      </unit-btn>
+    </unit-flex-box>
   </div>
 </template>
 
