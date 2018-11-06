@@ -2,12 +2,12 @@
   <div id="app">
     <unit-container>
       <problem-countdown-timer
-        :set-minute="5"
-        @countdown="countdown"
+        :initial-time="initialTime"
+        @countdown="seconds => lastSeconds = seconds"
       />
       <router-view
         :user-answer-array="userAnswerArray"
-        :last-time="lastTime"
+        :last-time="lastSeconds"
       />
     </unit-container>
   </div>
@@ -26,7 +26,8 @@ export default {
   data() {
     return {
       userAnswerArray: Array(100).fill(0),
-      lastTime: 0,
+      initialTime: 300000,
+      lastSeconds: 0,
     };
   },
   created() {
@@ -36,11 +37,6 @@ export default {
     this.$bus.$on('clear-answer', () => {
       this.userAnswerArray = Array(100).fill(0);
     });
-  },
-  methods: {
-    countdown(millisecond) {
-      this.lastTime = millisecond;
-    },
   },
 };
 </script>

@@ -2,7 +2,14 @@
   <unit-floater position-top>
     <unit-flex-box justify-center>
       <div class="timer">
-        00:00
+        <countdown
+          :time="initialTime"
+          @countdownprogress="emitSeconds"
+        >
+          <template slot-scope="props">
+            {{ props.minutes }}:{{ props.seconds }}
+          </template>
+        </countdown>
       </div>
     </unit-flex-box>
   </unit-floater>
@@ -12,8 +19,20 @@
 import Units from '../Units/Units';
 
 export default {
+  name: 'ProblemCountdownTimer',
   components: {
     ...Units,
+  },
+  props: {
+    initialTime: {
+      type: Number,
+      default: 0,
+    },
+  },
+  methods: {
+    emitSeconds({ totalSeconds }) {
+      this.$emit('countdown', totalSeconds);
+    },
   },
 };
 </script>
