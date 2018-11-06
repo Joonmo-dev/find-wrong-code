@@ -31,7 +31,7 @@ export default {
     };
   },
   created() {
-    this.$bus.$on('add-score', (index, score) => {
+    this.$bus.$on('set-score', (index, score) => {
       this.userAnswerArray[index] = score;
     });
     this.$bus.$on('clear-answer', () => {

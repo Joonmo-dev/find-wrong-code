@@ -92,7 +92,7 @@ export default {
   },
   methods: {
     gotoNextProblem() {
-      this.$bus.$emit('add-score', this.numericId - 1, this.isCorrect ? this.problemScore : 0);
+      this.$bus.$emit('set-score', this.numericId - 1, this.isCorrect ? this.problemScore : 0);
       if (this.numericId < this.numOfProblem) {
         this.$router.push({
           name: 'PageProblem',
