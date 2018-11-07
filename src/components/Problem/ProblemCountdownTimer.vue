@@ -1,17 +1,23 @@
 <template>
   <unit-floater position-top>
-    <unit-flex-box justify-center>
-      <div class="timer">
-        <countdown
-          :time="initialTime"
-          @countdownprogress="emitSeconds"
-        >
-          <template slot-scope="props">
-            {{ props.minutes }}:{{ props.seconds }}
-          </template>
-        </countdown>
-      </div>
-    </unit-flex-box>
+    <transition enter-active-class="animated fadeInDown">
+      <unit-flex-box
+        v-if="isVisible"
+        justify-center
+      >
+        <div class="timer">
+          <countdown
+            ref="countdown"
+            :time="initialTime"
+            @countdownprogress="emitSeconds"
+          >
+            <template slot-scope="props">
+              {{ props.minutes }}:{{ props.seconds }}
+            </template>
+          </countdown>
+        </div>
+      </unit-flex-box>
+    </transition>
   </unit-floater>
 </template>
 
@@ -28,6 +34,20 @@ export default {
       type: Number,
       default: 0,
     },
+  },
+  data() {
+    return {
+      isVisible: false,
+    };
+  },
+  mounted() {
+    this.$bus.$on('start-timer', () => {
+      this.isVisible = true;
+    });
+    this.$bus.$on('stop-timer', () => {
+      this.isVisible = false;
+      this.$refs.countdown.stop();
+    });
   },
   methods: {
     emitSeconds({ totalSeconds }) {

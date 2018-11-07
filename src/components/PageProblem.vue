@@ -102,6 +102,7 @@ export default {
           },
         });
       } else {
+        this.$bus.$emit('stop-timer');
         this.$router.push({
           name: 'PageResult',
           params: {

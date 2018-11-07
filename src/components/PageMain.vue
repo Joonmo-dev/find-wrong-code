@@ -60,6 +60,7 @@ export default {
   },
   methods: {
     gotoC() {
+      this.$bus.$emit('start-timer');
       this.$router.push({
         name: 'PageProblem',
         params: {
@@ -69,6 +70,7 @@ export default {
       });
     },
     gotoJavascript() {
+      this.$bus.$emit('start-timer');
       this.$router.push({
         name: 'PageProblem',
         params: {
