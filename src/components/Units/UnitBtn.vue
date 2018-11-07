@@ -1,5 +1,6 @@
 <template>
   <button
+    :style="styles"
     class="btn"
     @click="onClick"
   >
@@ -10,6 +11,27 @@
 <script>
 export default {
   name: 'UnitBtn',
+  props: {
+    width: {
+      type: String,
+      default: '200px',
+    },
+    square: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    height() {
+      return this.square ? this.width : '50px';
+    },
+    styles() {
+      return {
+        width: this.width,
+        height: this.height,
+      };
+    },
+  },
   methods: {
     onClick(event) {
       this.$emit('on-click', event);
@@ -20,8 +42,6 @@ export default {
 
 <style scoped lang="scss">
 .btn {
-  width: 200px;
-  height: 50px;
   background-color: #666;
   outline: none;
   border: none;

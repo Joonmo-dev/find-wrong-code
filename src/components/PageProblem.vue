@@ -3,6 +3,12 @@
     :key="individualKey"
     class="page-problem"
   >
+    <problem-home-btn
+      v-animate-css="{
+        classes: 'fadeIn',
+        delay: 1500,
+      }"
+    />
     <unit-title
       v-animate-css="{
         classes: 'fadeInUp',
@@ -41,6 +47,7 @@
 <script>
 import Units from './Units/Units';
 import ProblemArea from './Problem/ProblemArea';
+import ProblemHomeBtn from './Problem/ProblemHomeBtn';
 import problem from '../problems/problems';
 
 export default {
@@ -48,6 +55,7 @@ export default {
   components: {
     ...Units,
     ProblemArea,
+    ProblemHomeBtn,
   },
   props: {
     type: {
