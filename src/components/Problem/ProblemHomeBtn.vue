@@ -5,6 +5,7 @@
         width="80px"
         square
         class="btn"
+        @on-click="gotoHome"
       >
         <span class="btn-font">
           <home-icon class="home-icon"/>
@@ -26,9 +27,15 @@ export default {
     ...Units,
   },
   props: {
-    routeLink: {
-      type: Number,
-      default: 0,
+    route: {
+      type: Object,
+      required: true,
+    },
+  },
+  methods: {
+    gotoHome() {
+      this.$router.push(this.route);
+      this.$emit('on-click');
     },
   },
 };

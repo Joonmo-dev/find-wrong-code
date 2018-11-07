@@ -8,6 +8,8 @@
         classes: 'fadeIn',
         delay: 1500,
       }"
+      :route="{ name: 'PageMain' }"
+      @on-click="clickHomeBtn"
     />
     <unit-title
       v-animate-css="{
@@ -121,6 +123,9 @@ export default {
     },
     onChangeAnswer(result) {
       this.isCorrect = result;
+    },
+    clickHomeBtn() {
+      this.$bus.$emit('stop-timer');
     },
   },
 };
