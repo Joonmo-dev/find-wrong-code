@@ -1,14 +1,19 @@
 <template>
   <div id="app">
-    <unit-container>
+    <unit-container class="container">
       <problem-countdown-timer
         :initial-time="initialTime"
         @countdown="seconds => lastSeconds = seconds"
       />
-      <router-view
-        :user-answer-array="userAnswerArray"
-        :last-time="lastSeconds"
-      />
+      <transition
+        name="fade"
+        mode="out-in"
+      >
+        <router-view
+          :user-answer-array="userAnswerArray"
+          :last-time="lastSeconds"
+        />
+      </transition>
     </unit-container>
   </div>
 </template>
@@ -52,5 +57,14 @@ body {
 
 body, div, span, h1, h2, h3, h4, h5, h6, button {
   box-sizing: border-box;
+}
+
+.fade {
+  &-leave-active {
+    transition: opacity 0.5s;
+  }
+  &-leave-to {
+    opacity: 0;
+  }
 }
 </style>
