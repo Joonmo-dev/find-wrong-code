@@ -1,6 +1,12 @@
 <template>
-  <unit-floater position-bottom>
-    <unit-flex-box justify-end>
+  <unit-floater
+    position-bottom
+    class="floater"
+  >
+    <unit-flex-box
+      justify-end
+      class="flex-box"
+    >
       <unit-btn
         width="80px"
         square
@@ -35,8 +41,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.floater {
+  z-index: -1;
+}
 .btn {
   margin-right: 50px;
+  position: relative;
+  z-index: 10;
 }
 .btn-font {
   font-size: 30px;
