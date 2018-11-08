@@ -6,17 +6,27 @@
       }"
       align-center
     >
-      최종결과
+      결과
     </unit-title>
     <unit-title
       v-animate-css="{
         classes: 'fadeInUp',
         delay: 500,
       }"
-      :level="2"
+      :level="4"
       align-center
     >
-      {{ finalScore }}점
+      문제 점수 {{ correctScore }}점, 남은 시간 {{ lastTime }}초
+    </unit-title>
+    <unit-title
+      v-animate-css="{
+        classes: 'fadeInUp',
+        delay: 750,
+      }"
+      :level="3"
+      align-center
+    >
+      최종 점수 {{ finalScore }}점
     </unit-title>
     <unit-title
       v-animate-css="{
@@ -26,20 +36,35 @@
       :level="4"
       align-center
     >
-      정답 확인
+      틀린 문제 정답 확인
     </unit-title>
-    <problem-area
-      v-animate-css="{
-        classes: 'fadeIn',
-        delay: 1000 + (100 * (index + 1)),
-      }"
+    <template
       v-for="(problem, index) in typedProblems"
-      :key="problem.id"
-      :problem-data="problem.data"
-      :problem-answer="problem.answer"
-      class="problem-check"
-      read-only
-    />
+      v-if="!userAnswerArray[index]"
+    >
+      <unit-title
+        v-animate-css="{
+          classes: 'fadeIn',
+          delay: 1000 + (100 * (index + 1)),
+        }"
+        :key="`title-${index}`"
+        :level="4"
+        align-left
+      >
+        {{ index + 1 }}번: {{ problem.score }}점
+      </unit-title>
+      <problem-area
+        v-animate-css="{
+          classes: 'fadeIn',
+          delay: 1000 + (100 * (index + 1)),
+        }"
+        :key="`problem-${index}`"
+        :problem-data="problem.data"
+        :problem-answer="problem.answer"
+        class="problem-check"
+        read-only
+      />
+    </template>
     <unit-flex-box
       justify-center
       class="goto-main-btn"
@@ -71,13 +96,20 @@ export default {
       type: Array,
       required: true,
     },
+    lastTime: {
+      type: Number,
+      default: 0,
+    },
   },
   computed: {
-    finalScore() {
+    correctScore() {
       return this.userAnswerArray.reduce((result, value) => result + value);
     },
     typedProblems() {
       return problem[this.type];
+    },
+    finalScore() {
+      return this.correctScore + parseInt(this.lastTime / 10, 10);
     },
   },
   methods: {

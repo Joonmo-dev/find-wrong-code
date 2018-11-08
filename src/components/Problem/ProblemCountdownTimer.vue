@@ -47,7 +47,6 @@ export default {
     });
     this.$bus.$on('stop-timer', () => {
       this.hide();
-      this.$refs.countdown.stop();
     });
   },
   methods: {
