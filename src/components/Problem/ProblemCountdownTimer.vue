@@ -10,6 +10,7 @@
             ref="countdown"
             :time="initialTime"
             @countdownprogress="emitSeconds"
+            @countdownend="close"
           >
             <template slot-scope="props">
               {{ props.minutes }}:{{ props.seconds }}
@@ -42,16 +43,27 @@ export default {
   },
   mounted() {
     this.$bus.$on('start-timer', () => {
-      this.isVisible = true;
+      this.show();
     });
     this.$bus.$on('stop-timer', () => {
-      this.isVisible = false;
+      this.hide();
       this.$refs.countdown.stop();
     });
   },
   methods: {
     emitSeconds({ totalSeconds }) {
       this.$emit('countdown', totalSeconds);
+    },
+    show() {
+      this.isVisible = true;
+    },
+    hide() {
+      this.isVisible = false;
+    },
+    close() {
+      this.emitSeconds(0);
+      this.hide();
+      this.$bus.$emit('goto-result');
     },
   },
 };

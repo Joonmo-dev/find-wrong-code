@@ -8,8 +8,7 @@
         classes: 'fadeIn',
         delay: 1500,
       }"
-      :route="{ name: 'PageMain' }"
-      @on-click="clickHomeBtn"
+      @on-click="gotoHome"
     />
     <unit-title
       v-animate-css="{
@@ -100,6 +99,9 @@ export default {
       return `${this.type}${this.id}`;
     },
   },
+  created() {
+    this.$bus.$on('goto-result', this.gotoResult);
+  },
   methods: {
     gotoNextProblem() {
       this.$bus.$emit('set-score', this.numericId - 1, this.isCorrect ? this.problemScore : 0);
@@ -113,19 +115,23 @@ export default {
         });
       } else {
         this.$bus.$emit('stop-timer');
-        this.$router.push({
-          name: 'PageResult',
-          params: {
-            type: this.type,
-          },
-        });
+        this.gotoResult();
       }
+    },
+    gotoResult() {
+      this.$router.push({
+        name: 'PageResult',
+        params: {
+          type: this.type,
+        },
+      });
     },
     onChangeAnswer(result) {
       this.isCorrect = result;
     },
-    clickHomeBtn() {
+    gotoHome() {
       this.$bus.$emit('stop-timer');
+      this.$router.push({ name: 'PageMain' });
     },
   },
 };
