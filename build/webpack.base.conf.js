@@ -80,7 +80,7 @@ module.exports = {
         }
       },
       {
-        test: /\.txt$/,
+        test: /\.c$/,
         use: 'raw-loader'
       }
     ]
