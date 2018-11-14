@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "Junmo <yunedoopea610@gmail.com>",
+  "main": "main/main.js",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
-    "build": "node build/build.js"
+    "build": "node build/build.js && electron-packager . Find-Wrong-Code",
+    "electron": "electron ."
   },
   "dependencies": {
     "@xkeshi/vue-countdown": "^1.0.1",
@@ -32,6 +34,8 @@
     "chalk": "^2.0.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
+    "electron": "^3.0.9",
+    "electron-packager": "^12.2.0",
     "eslint": "^4.15.0",
     "eslint-config-airbnb-base": "^11.3.0",
     "eslint-friendly-formatter": "^3.0.0",
